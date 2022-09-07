@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function initNetlifyIdentity(){
+      console.log("initNetlifyIdentity called")
+      const script = document.createElement("script");
+
+      script.src ="https://identity.netlify.com/v1/netlify-identity-widget.js"
+      script.async = true;
+
+      document.body.appendChild(script);
+    }
+    function optionNetlifyModal(){
+      const netlifyIdentity= window.netlifyIdentity;
+      if(netlifyIdentity)
+      netlifyIdentity.open();
+      else
+      console.log('netlifyIdentity ont defined')
+    }
+    initNetlifyIdentity();
+  </script>
+</head>
+<body>
+  
+  <form name="contact" method="POST" data-netlify="true">
+    <p>
+      <label>Your Name: <input type="text" name="name" /></label>
+    </p>
+    <p>
+      <label>Your Email: <input type="email" name="email" /></label>
+    </p>
+    <p>
+      <label>Your Role: <select name="role[]" multiple>
+        <option value="leader">Leader</option>
+        <option value="follower">Follower</option>
+      </select></label>
+    </p>
+    <p>
+      <label>Message: <textarea name="message"></textarea></label>
+    </p>
+    <p>
+      <button type="submit">Send</button>
+    </p>
+  </form>
+  <form name="fileForm" enctype="multipart/form-data" data-netlify="true">
+    <p>
+      <label>
+        <span>Name:</span>
+        <input name="name" type="text"/>
+      </label>
+    </p>
+    <p>
+      <label>
+        <span>add image:</span>
+        <input name="file" type="file"/>
+      </label>
+    </p>
+    <button>Submit</button>
+  </form>
+  <p class="result"></p>
+  //Test
+  <h2 onclick="optionNetlifyModal()">login</h2>
+  
+</body>
+</html>
